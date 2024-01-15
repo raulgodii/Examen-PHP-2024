@@ -19,5 +19,5 @@
 </form>
 
 <?php elseif(isset($_SESSION['login'])): ?>
-        <p class="successMessage"> Welcome <?= $_SESSION['login']->name?>! You have logged in successfully.</p>
+        <p class="successMessage"> Bienvenido <?= $_SESSION['login']->nombre_completo?>! Has iniciado sesión correctamente.</p>
 <?php endif; ?>

@@ -2,6 +2,7 @@
 namespace Routes;
 use Controllers\DashboardController;
 use Controllers\ErrorController;
+use Controllers\FondosController;
 use Controllers\UsuarioController;
 Use Lib\Router;
 
@@ -35,6 +36,10 @@ class Routes{
 
         Router::add('GET', '/error/', function(){
             return (new ErrorController())->error404();
+        });
+
+        Router::add('GET', '/fondos/', function(){
+            return (new FondosController())->mostrar_fondos();
         });
 
         Router::dispatch();

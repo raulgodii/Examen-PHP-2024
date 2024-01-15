@@ -16,13 +16,15 @@
             <?php if (!isset($_SESSION['login'])) : ?>
                 <ul>
                     <li><a href="<?= BASE_URL ?>/login/" class="btn">Iniciar Sesion</a></li>
-                    <li><a href="<?= BASE_URL ?>/registro/" class="btn">Registrarse</a></li>
                 </ul>
             <?php else : ?>
-                <h2><?= $_SESSION['login']->name ?></h2>
+                <h2><?= $_SESSION['login']->nombre_usuario ?></h2>
                 <ul>
-                    <?php if ($_SESSION['login']->email === "admin@admin.com") : ?>
-                        <li>You are the ADMIN</li>
+                    <?php if ($_SESSION['login']->rol === "direccion") : ?>
+                        <li>ROL Direccion</li>
+                        <li><a href="<?= BASE_URL ?>/registro/" class="btn">Registrar</a></li>
+                    <?php else : ?>
+                        <li>ROL Profesor</li>
                     <?php endif; ?>
                     <li><a href="<?= BASE_URL ?>/logout/" class="btn">Cerrar sesion</a> </li>
                 </ul>
@@ -32,6 +34,9 @@
         <nav>
             <ul>
                 <li><a href="<?= BASE_URL ?>">Inicio</a></li>
+                <?php if (isset($_SESSION['login'])) : ?>
+                    <li><a href="<?= BASE_URL ?>/fondos">Fondos</a></li>
+                <?php endif; ?>
             </ul>
 
         </nav>
