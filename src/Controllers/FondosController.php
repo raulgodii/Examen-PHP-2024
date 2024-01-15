@@ -17,4 +17,12 @@ class FondosController{
         $fondos = $this->model->obtenerFondos();
         $this->pages->render('fondos/ver_fondos', ["fondos"=>$fondos]);
     }
+
+    public function ordenarPorTitulo(){
+        $fondos = $this->model->obtenerFondos();
+        usort($fondos, function($a, $b) {
+            return strcmp($a->titulo, $b->titulo);
+        });
+        $this->pages->render('fondos/ver_fondos', ["fondos"=>$fondos]);
+    }
 }

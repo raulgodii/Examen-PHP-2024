@@ -1,8 +1,16 @@
 <h1>Fondos</h1>
 
+<br>
+
+<a href="<?= BASE_URL ?>/ordenarPorTitulo"><button>Ordenar por Título</button></a>
+<a href="<?= BASE_URL ?>/fondos"><button>Sin ordenar</button></a>
+
+<br><br>
+
 <?php if(isset($fondos)):?>
     <?php if($fondos):?>
         <table border="1">
+            <!-- Encabezados de la tabla -->
             <thead>
                 <tr>
                     <th>ID</th>

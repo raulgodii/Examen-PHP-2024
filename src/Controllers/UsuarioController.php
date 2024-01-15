@@ -170,4 +170,15 @@ class UsuarioController {
         // Renderiza la vista de gestión de perfil de usuario.
         $this->pages->render("Usuario/ManageProfile");
     }
+
+    public function modificarProfesores(){
+        $profesores = $this->repository->obtenerProfesores();
+        $this->pages->render('usuario/modificarProfesores', ["profesores" => $profesores]);
+    }
+
+    public function eliminarProfesor($id){
+        $this->repository->eliminarProfesor($id);
+        $profesores = $this->repository->obtenerProfesores();
+        $this->pages->render('usuario/modificarProfesores', ["profesores" => $profesores]);
+    }
 }

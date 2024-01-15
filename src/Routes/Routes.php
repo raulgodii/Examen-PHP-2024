@@ -42,6 +42,18 @@ class Routes{
             return (new FondosController())->mostrar_fondos();
         });
 
+        Router::add('GET', '/ordenarPorTitulo/', function(){
+            return (new FondosController())->ordenarPorTitulo();
+        });
+
+        Router::add('GET', '/modificarProfesores/', function(){
+            return (new UsuarioController())->modificarProfesores();
+        });
+
+        Router::add('GET', '/eliminarProfesor/:id', function($id){
+            return (new UsuarioController())->eliminarProfesor($id);
+        });
+
         Router::dispatch();
 
     }

@@ -21,6 +21,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "vlucas/phpdotenv": "*"
+        "vlucas/phpdotenv": "*",
+        "pagerfanta/pagerfanta": "^4.2"
     }
 }

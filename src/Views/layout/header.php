@@ -22,6 +22,7 @@
                 <ul>
                     <?php if ($_SESSION['login']->rol === "direccion") : ?>
                         <li>ROL Direccion</li>
+                        <li><a href="<?= BASE_URL ?>/modificarProfesores/" class="btn">Modificar Profesores</a></li>
                         <li><a href="<?= BASE_URL ?>/registro/" class="btn">Registrar</a></li>
                     <?php else : ?>
                         <li>ROL Profesor</li>

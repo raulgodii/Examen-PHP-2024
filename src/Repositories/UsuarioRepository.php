@@ -248,4 +248,49 @@ class UsuarioRepository
 
         return $result;
     }
+
+    public function obtenerProfesores()
+    {
+        try {
+            // Query
+            $stmt=$this->connection->prepare('SELECT * FROM profesores');
+
+            // Ejecutar query
+            $stmt->execute();
+
+            // Extraer registros
+            $datos = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+            // Cerrar
+            $stmt->closeCursor();
+
+            return $datos;
+        } catch (PDOException $e){
+            return false;
+        }
+    }
+
+
+    public function eliminarProfesor($id)
+{
+    try {
+        // Query para eliminar el profesor con el ID especificado
+        $stmt = $this->connection->prepare('DELETE FROM profesores WHERE id = :id');
+        
+        // Bind del parámetro ID
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        // Ejecutar la consulta de eliminación
+        $stmt->execute();
+
+        // Cerrar
+        $stmt->closeCursor();
+
+        return true; // Devuelve true si la eliminación fue exitosa
+    } catch (PDOException $e) {
+        return false; // Devuelve false en caso de error
+    }
+}
+
+    
 }
