@@ -5,39 +5,115 @@ namespace Models;
 /**
  * Clase que representa la entidad de usuario (Usuario).
  */
-class Usuario {
+class Usuario
+{
     private string|null $id;
-    private string $name;
-    private string $last_name;
+    private bool $cuentaBloqueada;
+    private string $usuario;
+    private string $dni;
+    private string $nombre;
+    private string $apellido1;
+    private string $apellido2;
     private string $email;
-    private string $password;
-    private string $date;
+    private string $rol;
+    private string $contrasena;
+
+    public function __construct(?string $id, bool $cuentaBloqueada, string $usuario, string $dni, string $nombre, string $apellido1, string $apellido2, string $email, string $rol, string $contrasena)
+    {
+        $this->id = $id;
+        $this->cuentaBloqueada = $cuentaBloqueada;
+        $this->usuario = $usuario;
+        $this->dni = $dni;
+        $this->nombre = $nombre;
+        $this->apellido1 = $apellido1;
+        $this->apellido2 = $apellido2;
+        $this->email = $email;
+        $this->rol = $rol;
+        $this->contrasena = $contrasena;
+    }
+
+        /**
+     * Obtiene el DNI del usuario.
+     *
+     * @return string DNI del usuario.
+     */
+    public function getDni(): string {
+        return $this->dni;
+    }
 
     /**
-     * Constructor de la clase Usuario.
+     * Establece el DNI del usuario.
      *
-     * @param string|null $id       ID del usuario (opcional).
-     * @param string      $name     Nombre del usuario.
-     * @param string      $last_name Apellido del usuario.
-     * @param string      $email    Correo electrónico del usuario.
-     * @param string      $password Contraseña del usuario.
-     * @param string      $date     Fecha de creación del usuario.
+     * @param string $dni Nuevo DNI del usuario.
      */
-    public function __construct(string|null $id, string $name, string $last_name, string $email, string $password, string $date) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->last_name = $last_name;
-        $this->email = $email;
-        $this->password = $password;
-        $this->date = $date;
+    public function setDni(string $dni): void {
+        $this->dni = $dni;
     }
+
+    /**
+     * Obtiene el estado de cuenta bloqueada del usuario.
+     *
+     * @return bool Estado de cuenta bloqueada del usuario.
+     */
+    public function getCuentaBloqueada(): bool {
+        return $this->cuentaBloqueada;
+    }
+
+    /**
+     * Establece el estado de cuenta bloqueada del usuario.
+     *
+     * @param bool $cuentaBloqueada Nuevo estado de cuenta bloqueada del usuario.
+     */
+    public function setCuentaBloqueada(bool $cuentaBloqueada): void {
+        $this->cuentaBloqueada = $cuentaBloqueada;
+    }
+
+    /**
+     * Obtiene el nombre del usuario.
+     *
+     * @return string Nombre del usuario.
+     */
+    public function getNombre(): string {
+        return $this->nombre;
+    }
+
+    /**
+     * Establece el nombre del usuario.
+     *
+     * @param string $nombre Nuevo nombre del usuario.
+     */
+    public function setNombre(string $nombre): void {
+        $this->nombre = $nombre;
+    }
+
+    /**
+     * Obtiene la contraseña del usuario.
+     *
+     * @return string Contraseña del usuario.
+     */
+    public function getContrasena(): string
+    {
+        return $this->contrasena;
+    }
+
+    /**
+     * Establece la contraseña del usuario.
+     *
+     * @param string $contrasena Nueva contraseña del usuario.
+     */
+    public function setContrasena(string $contrasena): void
+    {
+        $this->contrasena = $contrasena;
+    }
+
 
     /**
      * Obtiene el ID del usuario.
      *
      * @return string|null ID del usuario.
      */
-    public function getId(): string|null {
+    public function getId(): ?string
+    {
         return $this->id;
     }
 
@@ -46,17 +122,29 @@ class Usuario {
      *
      * @return string Nombre del usuario.
      */
-    public function getName(): string {
-        return $this->name;
+    public function getUsuario(): string
+    {
+        return $this->usuario;
     }
 
     /**
-     * Obtiene el apellido del usuario.
+     * Obtiene el apellido1 del usuario.
      *
-     * @return string Apellido del usuario.
+     * @return string Apellido1 del usuario.
      */
-    public function getLast_name(): string {
-        return $this->last_name;
+    public function getApellido1(): string
+    {
+        return $this->apellido1;
+    }
+
+    /**
+     * Obtiene el apellido2 del usuario.
+     *
+     * @return string Apellido2 del usuario.
+     */
+    public function getApellido2(): string
+    {
+        return $this->apellido2;
     }
 
     /**
@@ -64,26 +152,9 @@ class Usuario {
      *
      * @return string Correo electrónico del usuario.
      */
-    public function getEmail(): string {
+    public function getEmail(): string
+    {
         return $this->email;
-    }
-
-    /**
-     * Obtiene la contraseña del usuario.
-     *
-     * @return string Contraseña del usuario.
-     */
-    public function getPassword(): string {
-        return $this->password;
-    }
-
-    /**
-     * Obtiene la fecha de creación del usuario.
-     *
-     * @return string Fecha de creación del usuario.
-     */
-    public function getDate(): string {
-        return $this->date;
     }
 
     /**
@@ -91,26 +162,39 @@ class Usuario {
      *
      * @param string $id Nuevo ID del usuario.
      */
-    public function setId(string $id): void {
+    public function setId(string $id): void
+    {
         $this->id = $id;
     }
 
     /**
      * Establece el nombre del usuario.
      *
-     * @param string $name Nuevo nombre del usuario.
+     * @param string $usuario Nuevo nombre del usuario.
      */
-    public function setName(string $name): void {
-        $this->name = $name;
+    public function setUsuario(string $usuario): void
+    {
+        $this->usuario = $usuario;
     }
 
     /**
-     * Establece el apellido del usuario.
+     * Establece el apellido1 del usuario.
      *
-     * @param string $last_name Nuevo apellido del usuario.
+     * @param string $apellido1 Nuevo apellido1 del usuario.
      */
-    public function setLast_name(string $last_name): void {
-        $this->last_name = $last_name;
+    public function setApellido1(string $apellido1): void
+    {
+        $this->apellido1 = $apellido1;
+    }
+
+    /**
+     * Establece el apellido2 del usuario.
+     *
+     * @param string $apellido2 Nuevo apellido2 del usuario.
+     */
+    public function setApellido2(string $apellido2): void
+    {
+        $this->apellido2 = $apellido2;
     }
 
     /**
@@ -118,27 +202,32 @@ class Usuario {
      *
      * @param string $email Nuevo correo electrónico del usuario.
      */
-    public function setEmail(string $email): void {
+    public function setEmail(string $email): void
+    {
         $this->email = $email;
     }
 
     /**
-     * Establece la contraseña del usuario.
+     * Obtiene el rol del usuario.
      *
-     * @param string $password Nueva contraseña del usuario.
+     * @return string Rol del usuario.
      */
-    public function setPassword(string $password): void {
-        $this->password = $password;
+    public function getRol(): string
+    {
+        return $this->rol;
     }
 
     /**
-     * Establece la fecha de creación del usuario.
+     * Establece el rol del usuario.
      *
-     * @param string $date Nueva fecha de creación del usuario.
+     * @param string $rol Nuevo rol del usuario.
      */
-    public function setDate(string $date): void {
-        $this->date = $date;
+    public function setRol(string $rol): void
+    {
+        $this->rol = $rol;
     }
+
+
 
     /**
      * Crea una instancia de Usuario a partir de un array de datos.
@@ -146,14 +235,19 @@ class Usuario {
      * @param array $data Datos del usuario.
      * @return Usuario Instancia de la clase Usuario.
      */
-    public static function fromArray(array $data): Usuario {
+    public static function fromArray(array $data): Usuario
+    {
         return new Usuario(
             $data['id'] ?? null,
-            $data['name'] ?? '',
-            $data['last_name'] ?? '',
+            $data['cuentaBloqueada'] ?? false,
+            $data['usuario'] ?? '',
+            $data['dni'] ?? '',
+            $data['nombre'] ?? '',
+            $data['apellido1'] ?? '',
+            $data['apellido2'] ?? '',
             $data['email'] ?? '',
-            $data['password'] ?? '',
-            $data['date'] ?? ''
+            $data['rol'] ?? '',
+            $data['contrasena'] ?? ''
         );
     }
 
@@ -163,20 +257,25 @@ class Usuario {
      * @param array $data Datos del usuario a validar y sanitizar.
      * @return array Datos del usuario validados y sanitizados.
      */
-    public static function validSanitizeUsuario(array $data): array {
-        // Reglas de validación
+    public static function validSanitizeUsuario(array $data): array
+    {
+        // Reglas de validación y sanitización
         $rules = array(
-            'name' => array('filter' => FILTER_VALIDATE_REGEXP, 'options' => array('regexp' => '/^[a-zA-Z]+$/')),
-            'last_name' => array('filter' => FILTER_VALIDATE_REGEXP, 'options' => array('regexp' => '/^[a-zA-Z]+$/')),
+            'usuario' => array('filter' => FILTER_VALIDATE_REGEXP, 'options' => array('regexp' => '/^[a-zA-Z0-9]+$/')),
+            'dni' => array('filter' => FILTER_VALIDATE_REGEXP, 'options' => array('regexp' => '/^[a-zA-Z0-9]+$/')),
+            'nombre' => array('filter' => FILTER_VALIDATE_REGEXP, 'options' => array('regexp' => '/^[a-zA-Z]+$/')),
+            'apellido1' => array('filter' => FILTER_VALIDATE_REGEXP, 'options' => array('regexp' => '/^[a-zA-Z]+$/')),
+            'apellido2' => array('filter' => FILTER_VALIDATE_REGEXP, 'options' => array('regexp' => '/^[a-zA-Z]+$/')),
             'email' => FILTER_VALIDATE_EMAIL,
-            'date' => array('filter' => FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-            'password' => array('filter' => FILTER_SANITIZE_FULL_SPECIAL_CHARS)
+            'contrasena' => array(
+                'filter' => FILTER_VALIDATE_REGEXP,
+                'options' => array('regexp' => '/^(?=.*[A-Z])(?=.*\d)(?=.*[#!@*$])[A-Za-z\d#!@*$]{7,}$/')
+            )
         );
-    
+
         $validData = filter_var_array($data, $rules);
-    
-        // Devuelve
+
         // Devuelve los datos válidos y sanitizados
         return $validData;
-    } 
+    }
 }

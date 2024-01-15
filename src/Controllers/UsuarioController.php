@@ -33,8 +33,7 @@ class UsuarioController {
 
                 // Validación y sanitización del usuario.
                 if (Usuario::validSanitizeUsuario($usuarioReg)) {
-                    $usuarioReg['password'] = password_hash($usuarioReg['password'], PASSWORD_BCRYPT, ['cost' => 4]);
-
+                    //$usuarioReg['contrasena'] = password_hash($usuarioReg['contrasena'], PASSWORD_BCRYPT, ['cost' => 4]);
                     $usuario = Usuario::fromArray($usuarioReg);
 
                     // Registro del usuario en la base de datos.

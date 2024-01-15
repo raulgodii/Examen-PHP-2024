@@ -86,31 +86,40 @@ class UsuarioRepository
      */
     public function registerUsuario(Usuario $usuario): bool
     {
-        $id = null;
-        $name = $usuario->getName();
-        $last_name = $usuario->getLast_name();
+        $id = $usuario->getId();
+        $cuentaBloqueada = $usuario->getCuentaBloqueada();
+        $usuarioNombre = $usuario->getUsuario();
+        $dni = $usuario->getDni();
+        $nombre = $usuario->getNombre();
+        $apellido1 = $usuario->getApellido1();
+        $apellido2 = $usuario->getApellido2();
         $email = $usuario->getEmail();
-        $password = $usuario->getPassword();
-        $date = $usuario->getDate();
-
+        $rol = $usuario->getRol();
+        $contrasena = $usuario->getContrasena();
+        
         try {
-            $ins = $this->connection->prepare("INSERT INTO users (id, name, last_name, email, password, date) values (:id, :name, :last_name, :email, :password, :date)");
+            $ins = $this->connection->prepare("INSERT INTO profesores (id, cuenta_bloqueada, nombre_usuario, dni, nombre_completo, apellido1, apellido2, correo, rol, contrasena) 
+                                                VALUES (:id, :cuentaBloqueada, :usuario, :dni, :nombre, :apellido1, :apellido2, :email, :rol, :contrasena)");
             $ins->bindValue(':id', $id);
-            $ins->bindValue(':name', $name, PDO::PARAM_STR);
-            $ins->bindValue(':last_name', $last_name, PDO::PARAM_STR);
+            $ins->bindValue(':cuentaBloqueada', $cuentaBloqueada, PDO::PARAM_BOOL);
+            $ins->bindValue(':usuario', $usuarioNombre, PDO::PARAM_STR);
+            $ins->bindValue(':dni', $dni, PDO::PARAM_STR);
+            $ins->bindValue(':nombre', $nombre, PDO::PARAM_STR);
+            $ins->bindValue(':apellido1', $apellido1, PDO::PARAM_STR);
+            $ins->bindValue(':apellido2', $apellido2, PDO::PARAM_STR);
             $ins->bindValue(':email', $email, PDO::PARAM_STR);
-            $ins->bindValue(':password', $password, PDO::PARAM_STR);
-            $ins->bindValue(':date', $date, PDO::PARAM_STR);
-
+            $ins->bindValue(':rol', $rol, PDO::PARAM_STR);
+            $ins->bindValue(':contrasena', $contrasena, PDO::PARAM_STR);
+    
             $ins->execute();
-
+    
             $ins->closeCursor();
-
+    
             $result = true;
         } catch (PDOException $err) {
             $result = false;
         }
-
+    
         return $result;
     }
 
@@ -123,7 +132,7 @@ class UsuarioRepository
     public function buscaMail(string $email): bool|object
     {
         try {
-            $cons = $this->connection->prepare("SELECT * FROM users WHERE email = :email");
+            $cons = $this->connection->prepare("SELECT * FROM profesores WHERE correo = :email");
             $cons->bindValue(':email', $email, PDO::PARAM_STR);
             $cons->execute();
             
@@ -151,16 +160,19 @@ class UsuarioRepository
     {
         $result = false;
         $email = $usuario->getEmail();
-        $password = $usuario->getPassword();
+        $contrasena = $usuario->getContrasena();
 
         $usuario = $this->buscaMail($email);
 
         if ($usuario !== false) {
-            $verify = password_verify($password, $usuario->password);
+            
+            //$verify = password_verify($contrasena, $usuario->contrasena);
+            $verify = ($contrasena === $usuario->contrasena);
 
             if ($verify) {
                 $result = $usuario;
             } else {
+                echo $contrasena . "  " . $usuario->contrasena;
                 $result = false;
             }
         } else {

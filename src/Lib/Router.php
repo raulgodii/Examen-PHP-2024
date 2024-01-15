@@ -20,7 +20,7 @@ class Router {
         $method = $_SERVER['REQUEST_METHOD']; 
         //print_r($_SERVER);die($method);
         
-        $action = preg_replace('/PHP-Examen/','',$_SERVER['REQUEST_URI']);
+        $action = preg_replace('/Examen-PHP-2024/','',$_SERVER['REQUEST_URI']);
         
        //$_SERVER['REQUEST_URI'] almacena la cadena de texto que hay después del nombre del host en la URL
         $action = trim($action, '/');
@@ -40,7 +40,7 @@ class Router {
             $callback = self::$routes[$method][$action];
             echo call_user_func($callback, $param);
         } else {
-            header('Location: /PHP-Examen/error/');
+            header('Location: /Examen-PHP-2024/error/');
         }
 
     }

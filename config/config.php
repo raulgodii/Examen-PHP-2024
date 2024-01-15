@@ -1,2 +1,2 @@
 <?php
-const BASE_URL = "http://localhost/PHP-Examen";
+const BASE_URL = "http://localhost/Examen-PHP-2024";

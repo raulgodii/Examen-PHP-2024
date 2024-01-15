@@ -12,7 +12,7 @@
     <header>
 
         <div class="header-init">
-            <h1>Examen PHP</h1>
+            <h1>Videoteca</h1>
             <?php if (!isset($_SESSION['login'])) : ?>
                 <ul>
                     <li><a href="<?= BASE_URL ?>/login/" class="btn">Iniciar Sesion</a></li>
