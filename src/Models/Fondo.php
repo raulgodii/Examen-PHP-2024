@@ -90,4 +90,28 @@ class Fondo {
             return false;
         }
     }
+
+    public function buscarFondo($titulo) {
+        try {
+            // Query con cláusula WHERE para buscar por título
+            $stmt = $this->connection->prepare('SELECT * FROM fondos WHERE titulo LIKE :titulo');
+    
+            // Añadir el parámetro del título con comodín '%' para coincidencias parciales
+            $stmt->bindValue(':titulo', '%' . $titulo . '%', PDO::PARAM_STR);
+    
+            // Ejecutar query
+            $stmt->execute();
+    
+            // Extraer registros
+            $datos = $stmt->fetchAll(PDO::FETCH_OBJ);
+    
+            // Cerrar
+            $stmt->closeCursor();
+    
+            return $datos;
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+    
 }

@@ -25,4 +25,15 @@ class FondosController{
         });
         $this->pages->render('fondos/ver_fondos', ["fondos"=>$fondos]);
     }
+
+    public function buscarPorTitulo(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($_POST['titulo']) {
+                $fondos = $this->model->buscarFondo($_POST['titulo']);
+            } else {
+                $fondos = $this->model->obtenerFondos();
+            }
+        }
+        $this->pages->render('fondos/ver_fondos', ["fondos"=>$fondos]);
+    }
 }

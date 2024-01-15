@@ -54,6 +54,18 @@ class Routes{
             return (new UsuarioController())->eliminarProfesor($id);
         });
 
+        Router::add('GET', '/modificarProfesor/:id', function($id){
+            return (new UsuarioController())->modificarProfesor($id);
+        });
+
+        Router::add('GET', '/confirmarModificarProfesor/:id', function($id){
+            return (new UsuarioController())->confirmarModificarProfesor($id);
+        });
+
+        Router::add('POST', '/buscarPorTitulo/', function(){
+            return (new FondosController())->buscarPorTitulo();
+        });
+
         Router::dispatch();
 
     }

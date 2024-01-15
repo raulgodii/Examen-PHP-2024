@@ -292,5 +292,29 @@ class UsuarioRepository
     }
 }
 
+public function obtenerProfesorId($id)
+{
+    try {
+        // Query para eliminar el profesor con el ID especificado
+        $stmt = $this->connection->prepare('SELECT * FROM profesores WHERE ID = :id');
+        
+        // Bind del parámetro ID
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        // Ejecutar la consulta
+        $stmt->execute();
+
+        // Extraer registros
+        $datos = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        // Cerrar
+        $stmt->closeCursor();
+
+        return $datos; 
+    } catch (PDOException $e) {
+        return false; // Devuelve false en caso de error
+    }
+}
+
     
 }

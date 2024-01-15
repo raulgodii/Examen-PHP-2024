@@ -7,6 +7,15 @@
 
 <br><br>
 
+<!-- Formulario de búsqueda por título -->
+<form method="POST" action="<?= BASE_URL ?>/buscarPorTitulo">
+    <label for="titulo">Buscar por Título:</label>
+    <input type="text" name="titulo">
+    <button type="submit">Buscar</button>
+</form>
+
+<br>
+
 <?php if(isset($fondos)):?>
     <?php if($fondos):?>
         <table border="1">

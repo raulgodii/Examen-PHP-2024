@@ -181,4 +181,17 @@ class UsuarioController {
         $profesores = $this->repository->obtenerProfesores();
         $this->pages->render('usuario/modificarProfesores', ["profesores" => $profesores]);
     }
+
+    public function modificarProfesor($id){
+        $profesor = $this->repository->obtenerProfesorId($id);
+        $this->pages->render('usuario/modificarProfesor', ["profesor" => $profesor]);
+    }
+
+    public function confirmarModificarProfesor($id){
+        $this->repository->confirmarModificarProfesor($id);
+        $profesores = $this->repository->obtenerProfesores();
+        $this->pages->render('usuario/modificarProfesores', ["profesores" => $profesores]);
+    }
+
+
 }
