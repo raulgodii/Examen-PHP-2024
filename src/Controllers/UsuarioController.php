@@ -188,7 +188,12 @@ class UsuarioController {
     }
 
     public function confirmarModificarProfesor($id){
-        $this->repository->confirmarModificarProfesor($id);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($_POST['data']) {
+                $this->repository->confirmarModificarProfesor($data);
+            } 
+        }
+        
         $profesores = $this->repository->obtenerProfesores();
         $this->pages->render('usuario/modificarProfesores', ["profesores" => $profesores]);
     }
